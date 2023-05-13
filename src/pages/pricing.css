@@ -1,0 +1,33 @@
+.cel {
+    padding-right: 100px;
+    border-top: none;
+    border-radius: 2px;
+    margin-left: 0px;
+  }
+
+  .ant-card .ant-card-head {
+    border-bottom: 2px solid #f0f0f0;
+  }
+  .card-title {
+    display: flex;
+  }
+  .card-name {
+    margin-top: 5px;
+  }
+  .zipcode-input {
+    width: 60%;
+    margin-left: 90px;
+    height: 28px;
+    margin-top: 2px;
+  }
+
+  .cardHeader {
+    border-width: 3px;
+  }
+  .divider {
+    border-width: 3px;
+  }
+  .editEffect {
+    cursor: pointer;
+    float: right;
+  }
