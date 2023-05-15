@@ -364,10 +364,6 @@ const Pricing = () => {
     // console.log(arr)
     setDataSource(arr);
     setmaterialData(arr);
-
-    setTimeout(() => {
-      // console.log(dataSource, materialData)
-    }, 0);
   };
 
   const defaultColumns = [
@@ -701,12 +697,12 @@ const Pricing = () => {
 
             <Row>
               <Col span={6} offset={19} style={{ display: "flex", marginTop: "5px" }}>
-                {error && zipCode.length <= 0 ? (
-                  <Button type="primary" disabled style={{ margin: "1rem" }} size="large">
+                {error && zipCode.length >= 0 ? (
+                  <Button type="primary" style={{ margin: "1rem" }} size="large" onClick={handleButtonClick}>
                     Save
                   </Button>
                 ) : (
-                  <Button type="primary" onClick={handleButtonClick} style={{ margin: "1rem" }} size="large">
+                  <Button type="primary"  disabled style={{ margin: "1rem" }} size="large">
                     Save
                   </Button>
                 )}

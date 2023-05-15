@@ -9,6 +9,7 @@ import Alert from "./Alert";
 import { useNavigate } from "react-router-dom";
 
 
+
 const Login = () => {
   //global state
   const { showAlert, displayAlert } = useAppContext();
@@ -36,7 +37,7 @@ const Login = () => {
       if (res && res.data && res.data.success) {
         localStorage.setItem("authenticated", "true");
         setLoggedIn(true);
-        navigate("/pricing");
+        // navigate("/pricing");
         console.log("navigated")
       }
       // if (!res.ok) {
@@ -89,9 +90,9 @@ const Login = () => {
   return (
     <div style={{ backgroundColor: "#EBFAF4", height: "97vh" }}>
       {/* {isLoggedIn && <Navigate to="/pricing" replace={true} />} */}
-      {/* {isLoggedIn && setTimeout(() => {
-        // navigate("/pricing");
-      }, 1000)} */}
+      {isLoggedIn && setTimeout(() => {
+        navigate("/pricing");
+      }, 4000)}
       <div className="header-login">
         <img
           src={Logo}
@@ -114,6 +115,10 @@ const Login = () => {
               Littr Login
             </h1>
             <Divider />
+            
+
+            {isLoggedIn === false ? <Button className="invalid">User is not exist</Button> : ""}
+            {isLoggedIn === true ? <Button className="valid">Successfully Login..</Button> : ""}
             {showAlert && <Alert />}
             <Form
               name="normal_login"
@@ -192,8 +197,7 @@ const Login = () => {
                 </Button>
               </Form.Item>
             </Form>
-            {isLoggedIn === false ? <span style={{color:"red"}}>User is not exist</span> : ""}
-            {isLoggedIn === true ? <span style={{color:"green"}}>Successfully Login..</span> : ""}
+            
           </Card>
         </Col>
       </Row>
