@@ -36,6 +36,8 @@ const Login = () => {
       if (res && res.data && res.data.success) {
         localStorage.setItem("authenticated", "true");
         setLoggedIn(true);
+        navigate("/pricing");
+        console.log("navigated")
       }
       // if (!res.ok) {
       //   setError(true);
@@ -50,6 +52,7 @@ const Login = () => {
         err.response.data.success === false
       ) {
         setLoggedIn(false);
+        
       } else {
         setLoggedIn(false);
       }
@@ -86,9 +89,9 @@ const Login = () => {
   return (
     <div style={{ backgroundColor: "#EBFAF4", height: "97vh" }}>
       {/* {isLoggedIn && <Navigate to="/pricing" replace={true} />} */}
-      {isLoggedIn && setTimeout(() => {
-        navigate("/pricing");
-      },)}
+      {/* {isLoggedIn && setTimeout(() => {
+        // navigate("/pricing");
+      }, 1000)} */}
       <div className="header-login">
         <img
           src={Logo}

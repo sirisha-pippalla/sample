@@ -333,7 +333,7 @@ const Pricing = () => {
       return <Navigate replace to="/login" />;
     } else {
     }
-  }, 100);
+  }, );
 
   const {
     token: { colorBgContainer },
