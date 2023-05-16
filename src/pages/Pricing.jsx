@@ -83,16 +83,16 @@ const EditableCell = ({
           },
         ]}
       >
-        {/* <span>$</span> */}
         <Input
           ref={inputRef}
           onPressEnter={save}
           onBlur={save}
           // addonBefore="$"
-        />
+          />
       </Form.Item>
     ) : (
       <div>
+        <span>$</span>
         {children}
         <span className="editEffect">
           <FaEdit onClick={toggleEdit} />
@@ -170,69 +170,69 @@ const Pricing = () => {
     //
     //13 GL
     request["13"]["62dacd6df05cb1c8722ef034"]["63b334f99e56b3c73ed83997"] =
-      Number(materialData[0][0].price); // plastic bag
+      Number(materialData[0][0].price).toFixed(2); // plastic bag
     request["13"]["62dacd6df05cb1c8722ef034"]["63b335139e56b3c73ed83998"] =
-      Number(materialData[1][0].price); // plastic drum
+      Number(materialData[1][0].price).toFixed(2); // plastic drum
     request["13"]["62dacda4f05cb1c8722ef035"]["63b3355e9e56b3c73ed8399b"] =
-      Number(materialData[2][0].price); // metal bag
+      Number(materialData[2][0].price).toFixed(2); // metal bag
     request["13"]["62dacda4f05cb1c8722ef035"]["63b335679e56b3c73ed8399c"] =
-      Number(materialData[3][0].price); // metal drum
+      Number(materialData[3][0].price).toFixed(2); // metal drum
     request["13"]["62dacdb1f05cb1c8722ef036"]["63b3353e9e56b3c73ed83999"] =
-      Number(materialData[4][0].price); // glass bag
+      Number(materialData[4][0].price).toFixed(2); // glass bag
     request["13"]["62dacdb1f05cb1c8722ef036"]["63b335479e56b3c73ed8399a"] =
-      Number(materialData[5][0].price); // glass drum
+      Number(materialData[5][0].price).toFixed(2); // glass drum
     request["13"]["62dacdbff05cb1c8722ef037"]["63b3357b9e56b3c73ed8399d"] =
-      Number(materialData[6][0].price); // e waste bag
+      Number(materialData[6][0].price).toFixed(2); // e waste bag
     request["13"]["62dacdbff05cb1c8722ef037"]["63b335849e56b3c73ed8399e"] =
-      Number(materialData[7][0].price); // e waste drum
+      Number(materialData[7][0].price).toFixed(2); // e waste drum
     request["13"]["62dacdcbf05cb1c8722ef038"]["63b335929e56b3c73ed8399f"] =
-      Number(materialData[8][0].price); // other bag
+      Number(materialData[8][0].price).toFixed(2); // other bag
     request["13"]["62dacdcbf05cb1c8722ef038"]["63b3359c9e56b3c73ed839a0"] =
-      Number(materialData[9][0].price); // other drum
+      Number(materialData[9][0].price).toFixed(2); // other drum
 
     //27GL
     request["27"]["62dacd6df05cb1c8722ef034"]["63b334f99e56b3c73ed83997"] =
-      Number(materialData[0][1].price); //pastic bag
+      Number(materialData[0][1].price).toFixed(2); //pastic bag
     request["27"]["62dacd6df05cb1c8722ef034"]["63b335139e56b3c73ed83998"] =
-      Number(materialData[1][1].price); //plastic drum
+      Number(materialData[1][1].price).toFixed(2); //plastic drum
     request["27"]["62dacda4f05cb1c8722ef035"]["63b3355e9e56b3c73ed8399b"] =
-      Number(materialData[2][1].price); //metal bag
+      Number(materialData[2][1].price).toFixed(2); //metal bag
     request["27"]["62dacda4f05cb1c8722ef035"]["63b335679e56b3c73ed8399c"] =
-      Number(materialData[3][1].price); //metal drum
+      Number(materialData[3][1].price).toFixed(2); //metal drum
     request["27"]["62dacdb1f05cb1c8722ef036"]["63b3353e9e56b3c73ed83999"] =
-      Number(materialData[4][1].price); //glass bag
+      Number(materialData[4][1].price).toFixed(2); //glass bag
     request["27"]["62dacdb1f05cb1c8722ef036"]["63b335479e56b3c73ed8399a"] =
-      Number(materialData[5][1].price); //glass drum
+      Number(materialData[5][1].price).toFixed(2); //glass drum
     request["27"]["62dacdbff05cb1c8722ef037"]["63b3357b9e56b3c73ed8399d"] =
-      Number(materialData[6][1].price); //e bag
+      Number(materialData[6][1].price).toFixed(2); //e bag
     request["27"]["62dacdbff05cb1c8722ef037"]["63b335849e56b3c73ed8399e"] =
-      Number(materialData[7][1].price); //e drum
+      Number(materialData[7][1].price).toFixed(2); //e drum
     request["27"]["62dacdcbf05cb1c8722ef038"]["63b335929e56b3c73ed8399f"] =
-      Number(materialData[8][1].price); //other bag
+      Number(materialData[8][1].price).toFixed(2); //other bag
     request["27"]["62dacdcbf05cb1c8722ef038"]["63b3359c9e56b3c73ed839a0"] =
-      Number(materialData[9][1].price); //other drum
+      Number(materialData[9][1].price).toFixed(2); //other drum
 
     // 55 gl
     request["56"]["62dacd6df05cb1c8722ef034"]["63b334f99e56b3c73ed83997"] =
-      Number(materialData[0][2].price); //plastic bag
+      Number(materialData[0][2].price).toFixed(2); //plastic bag
     request["56"]["62dacd6df05cb1c8722ef034"]["63b335139e56b3c73ed83998"] =
-      Number(materialData[1][2].price); //plastic drum
+      Number(materialData[1][2].price).toFixed(2); //plastic drum
     request["56"]["62dacda4f05cb1c8722ef035"]["63b3355e9e56b3c73ed8399b"] =
-      Number(materialData[2][2].price); //metal bag
+      Number(materialData[2][2].price).toFixed(2); //metal bag
     request["56"]["62dacda4f05cb1c8722ef035"]["63b335679e56b3c73ed8399c"] =
-      Number(materialData[3][2].price); //metal drum
+      Number(materialData[3][2].price).toFixed(2); //metal drum
     request["56"]["62dacdb1f05cb1c8722ef036"]["63b3353e9e56b3c73ed83999"] =
-      Number(materialData[4][2].price); //glass bag
+      Number(materialData[4][2].price).toFixed(2); //glass bag
     request["56"]["62dacdb1f05cb1c8722ef036"]["63b335479e56b3c73ed8399a"] =
-      Number(materialData[5][2].price); //glass drum
+      Number(materialData[5][2].price).toFixed(2); //glass drum
     request["56"]["62dacdbff05cb1c8722ef037"]["63b3357b9e56b3c73ed8399d"] =
-      Number(materialData[6][2].price); //e bag
+      Number(materialData[6][2].price).toFixed(2); //e bag
     request["56"]["62dacdbff05cb1c8722ef037"]["63b335849e56b3c73ed8399e"] =
-      Number(materialData[7][2].price); //e drum
+      Number(materialData[7][2].price).toFixed(2); //e drum
     request["56"]["62dacdcbf05cb1c8722ef038"]["63b335929e56b3c73ed8399f"] =
-      Number(materialData[8][2].price); //other bag
+      Number(materialData[8][2].price).toFixed(2); //other bag
     request["56"]["62dacdcbf05cb1c8722ef038"]["63b3359c9e56b3c73ed839a0"] =
-      Number(materialData[9][2].price); //other drum
+      Number(materialData[9][2].price).toFixed(2); //other drum
     request["_id"] = zipCode;
     request["status"] = true;
     delete request["zipCode"];
@@ -260,7 +260,7 @@ const Pricing = () => {
         obj
       );
 
-      const value = .42;
+      const value = 32.42;
       const formattedValue = value.toFixed(2); // '42.42' (formatted as '00.00')
       let modifiedStr = JSON.stringify(emptyMaterialData);
       let modifiedArr = JSON.parse(modifiedStr);
@@ -380,8 +380,9 @@ const Pricing = () => {
       editable: true,
     },
   ];
+  
 
-  const columns = defaultColumns.map((col) => {
+  const columns =defaultColumns.map((col) => {
     if (!col.editable) {
       return col;
     }
@@ -427,9 +428,10 @@ const Pricing = () => {
               color: "red",
               marginTop: "5px",
               fontStyle: "italic",
+              fontSize:"20px"
             }}
           >
-            Please enter the Zip Code...
+            Please enter Zip Code...
           </span>
         ) : (
           ""
@@ -461,9 +463,13 @@ const Pricing = () => {
                     bordered={false}
                     size="small"
                   >
+                    {/* <span>
+                      $
+                    </span> */}
                     <Table
                       rowClassName={() => "editable-row"}
                       bordered
+
                       components={components}
                       dataSource={materialData[0]}
                       columns={columns}
