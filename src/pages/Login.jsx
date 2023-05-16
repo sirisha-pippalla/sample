@@ -55,19 +55,11 @@ const Login = () => {
         err.res &&
         err.res.data &&
         err.res.data.statusCode &&
-        err.res.data.statusCode === 404
+        err.res.data.statusCode === false
       ) {
         setLoggedIn(false);
         
-      } else if(
-        err.res &&
-        err.res.data &&
-        err.res.data.statusCode &&
-        err.res.data.statusCode === 401
-      ){
-        setLoggedIn(false);
-      }
-      else {
+      }else {
         setLoggedIn(false);
       }
     }
