@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../components/Logo.png";
 import { Form, Input, Button, Checkbox, Col, Row, Card, Divider } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import { useAppContext } from "../context/AppContext";
@@ -14,12 +14,14 @@ const Login = () => {
   //global state
   const { showAlert, displayAlert } = useAppContext();
   //To store the data from frontend
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(null);
   const [diplayError, setdisplayError] = useState(false);
   const navigate = useNavigate();
+
+  const[message, setMessage] = useState()
   // const [error, setError] = useState(false);
   //success message for db
   // const [success, setSuccess] = useState(false);
@@ -27,54 +29,62 @@ const Login = () => {
   //function to fetch the data from DB
   const submitData = async () => {
     const data = {
-      email: email,
-      // password: password,
+      username: username,
+      password: password,
     };
     try {
-      const res = await axios.post("http://localhost:4000/getUser", data);
+      const res = await axios.post("https://cvwapkf3q6.execute-api.us-east-1.amazonaws.com/test/getUserLogin", data);
       console.log(res);
 
-      if (res && res.data && res.data.success) {
-        localStorage.setItem("authenticated", "true");
+      if (res && res.data && res.data.statusCode && res.data.statusCode === 200) {
+        // localStorage.setItem("authenticated", "true");
         setLoggedIn(true);
+        setMessage(res.data.message)
+        
         // navigate("/pricing");
         console.log("navigated")
+      } else {
+        console.log(res.data.message)
+        setLoggedIn(false);
+        setMessage(res.data.message)
       }
-      // if (!res.ok) {
-      //   setError(true);
-      //   return;
-      // }
+     
     } catch (err) {
       console.log(err);
       if (
-        err.response &&
-        err.response.data &&
-        err.response.data.success &&
-        err.response.data.success === false
+        err.res &&
+        err.res.data &&
+        err.res.data.statusCode &&
+        err.res.data.statusCode === 404
       ) {
         setLoggedIn(false);
         
-      } else {
+      } else if(
+        err.res &&
+        err.res.data &&
+        err.res.data.statusCode &&
+        err.res.data.statusCode === 401
+      ){
+        setLoggedIn(false);
+      }
+      else {
         setLoggedIn(false);
       }
     }
   };
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const handleCommit = () => {
-    console.log('handle commit')
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!email || !password) {
+    if (!username || !password) {
       displayAlert();
       setdisplayError(true);
       return;
@@ -92,7 +102,7 @@ const Login = () => {
       {/* {isLoggedIn && <Navigate to="/pricing" replace={true} />} */}
       {isLoggedIn && setTimeout(() => {
         navigate("/pricing");
-      }, 4000)}
+      }, 2000)}
       <div className="header-login">
         <img
           src={Logo}
@@ -117,8 +127,8 @@ const Login = () => {
             <Divider />
             
 
-            {isLoggedIn === false ? <Button className="invalid">User is not exist</Button> : ""}
-            {isLoggedIn === true ? <Button className="valid">Successfully Login..</Button> : ""}
+            {isLoggedIn === false ? <Button className="invalid">{message}</Button> : ""}
+            {isLoggedIn === true ? <Button className="valid">{message}</Button> : ""}
             {showAlert && <Alert />}
             <Form
               name="normal_login"
@@ -128,23 +138,24 @@ const Login = () => {
               }}
             >
               <Form.Item
-                name="email"
+                name="username"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your email!",
+                    message: "Please enter username!",
                   },
                 ]}
               >
                 <Input
-                  prefix={<MailOutlined className="site-form-item-icon" />}
+                  prefix={<UserOutlined className="site-form-item-icon" />}
                   placeholder="Username"
-                  value={email}
-                  onChange={handleEmail}
+                  value={username}
+                  onChange={handleUsername}
                 />
-                {diplayError && email.length <= 0 ? (
+                {diplayError && username.length <= 0 ? (
                   <span style={{ color: "red", fontStyle: "italic" }}>
-                    please fill the email.
+                    please enter username.
+                    
                   </span>
                 ) : (
                   ""
@@ -155,7 +166,7 @@ const Login = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your Password!",
+                    message: "Please enter Password!",
                   },
                 ]}
               >
@@ -168,7 +179,7 @@ const Login = () => {
                 />
                 {diplayError && password.length <= 0 ? (
                   <span style={{ color: "red", fontStyle: "italic" }}>
-                    please fill the password.
+                    please enter password.
                   </span>
                 ) : (
                   ""

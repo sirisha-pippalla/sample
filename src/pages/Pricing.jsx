@@ -83,11 +83,12 @@ const EditableCell = ({
           },
         ]}
       >
+        {/* <span>$</span> */}
         <Input
           ref={inputRef}
           onPressEnter={save}
           onBlur={save}
-          addonBefore="$"
+          // addonBefore="$"
         />
       </Form.Item>
     ) : (
@@ -120,7 +121,6 @@ const Pricing = () => {
     if (loggedInUser) {
       setauthenticated(loggedInUser);
       setmaterialData(emptyMaterialData);
-      
     }
   }, []);
 
@@ -145,11 +145,11 @@ const Pricing = () => {
         position: toast.POSITION.TOP_CENTER,
       });
     } else {
-      toast.success("update success!..", {
+      toast.success("Updated Successfully!..", {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-  }
+  };
   //submit button
   const handleButtonClick = () => {
     handleSubmit1();
@@ -159,7 +159,6 @@ const Pricing = () => {
 
   const [isSaved, setIsSaved] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
- 
 
   const handleSubmit1 = () => {
     console.log("handleSubmit1", materialData);
@@ -234,7 +233,7 @@ const Pricing = () => {
       Number(materialData[8][2].price); //other bag
     request["56"]["62dacdcbf05cb1c8722ef038"]["63b3359c9e56b3c73ed839a0"] =
       Number(materialData[9][2].price); //other drum
-    request["zipcode"] = zipCode;
+    request["_id"] = zipCode;
     request["status"] = true;
     delete request["zipCode"];
     console.log(request, "test for data");
@@ -261,6 +260,8 @@ const Pricing = () => {
         obj
       );
 
+      const value = .42;
+      const formattedValue = value.toFixed(2); // '42.42' (formatted as '00.00')
       let modifiedStr = JSON.stringify(emptyMaterialData);
       let modifiedArr = JSON.parse(modifiedStr);
       if (res && res.data && res.data.data && res.data.data.length > 0) {
@@ -268,7 +269,7 @@ const Pricing = () => {
           13: res.data.data[0][13],
           27: res.data.data[0][27],
           56: res.data.data[0][56],
-          zipcode: Number(res.data.zipcode),
+          _id: Number(res.data._id),
         };
         console.log(obj1);
         // localStorage.setItem("get existing data", JSON.stringify(obj1));
@@ -333,7 +334,7 @@ const Pricing = () => {
       return <Navigate replace to="/login" />;
     } else {
     }
-  }, );
+  });
 
   const {
     token: { colorBgContainer },
@@ -377,8 +378,6 @@ const Pricing = () => {
       key: "price",
       className: "cel",
       editable: true,
-
-      
     },
   ];
 
@@ -436,7 +435,7 @@ const Pricing = () => {
           ""
         )}
         <Divider className="divider" />
-        
+
         {materialData && materialData.length > 0 ? (
           <>
             <Row gutter={16} style={{ marginBottom: "1rem" }}>
@@ -450,6 +449,7 @@ const Pricing = () => {
                         className="zipcode-input"
                         value={zipCode}
                         disabled
+                        style={{ color: "black", fontWeight: "10px" }}
                       />
                     </div>
                   }
@@ -500,6 +500,7 @@ const Pricing = () => {
                         className="zipcode-input"
                         value={zipCode}
                         disabled
+                        style={{ color: "black", fontWeight: "10px" }}
                       />
                     </div>
                   }
@@ -550,6 +551,7 @@ const Pricing = () => {
                         className="zipcode-input"
                         value={zipCode}
                         disabled
+                        style={{ color: "black", fontWeight: "10px" }}
                       />
                     </div>
                   }
@@ -602,6 +604,7 @@ const Pricing = () => {
                         className="zipcode-input"
                         value={zipCode}
                         disabled
+                        style={{ color: "black", fontWeight: "10px" }}
                       />
                     </div>
                   }
@@ -643,7 +646,6 @@ const Pricing = () => {
                 </Card>
               </Col>
               <Col span={8} offset={3}>
-                
                 <Card
                   title={
                     <div className="card-title">
@@ -653,6 +655,7 @@ const Pricing = () => {
                         className="zipcode-input"
                         value={zipCode}
                         disabled
+                        style={{ color: "black", fontWeight: "10px" }}
                       />
                     </div>
                   }
@@ -696,21 +699,31 @@ const Pricing = () => {
             </Row>
 
             <Row>
-              <Col span={6} offset={19} style={{ display: "flex", marginTop: "5px" }}>
-                {error && zipCode.length >= 0 ? (
-                  <Button type="primary" style={{ margin: "1rem" }} size="large" onClick={handleButtonClick}>
+              <Col
+                span={6}
+                offset={19}
+                style={{ display: "flex", marginTop: "5px" }}
+              >
+                {error && zipCode.length >= 5 ? (
+                  <Button
+                    type="primary"
+                    style={{ margin: "1rem" }}
+                    size="large"
+                    onClick={handleButtonClick}
+                  >
                     Save
                   </Button>
                 ) : (
-                  <Button type="primary"  disabled style={{ margin: "1rem" }} size="large">
+                  <Button
+                    type="primary"
+                    disabled
+                    style={{ margin: "1rem" }}
+                    size="large"
+                  >
                     Save
                   </Button>
                 )}
-                <ToastContainer
-                  transition={Slide}
-                  theme="light"
-                  limit={1}
-                />
+                <ToastContainer transition={Slide} theme="light" limit={1} />
                 <Button
                   type="primary"
                   danger
@@ -724,7 +737,7 @@ const Pricing = () => {
           </>
         ) : (
           <div style={{ display: "flex", alignItems: "center" }}>
-            <div>Loading, Please Wait</div>
+            <div className="redirectmsg">Loading, Please Wait...</div>
           </div>
         )}
       </Content>
