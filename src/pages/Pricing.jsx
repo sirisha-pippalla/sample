@@ -108,35 +108,37 @@ const { Header, Sider, Content } = Layout;
 const Pricing = () => {
   const [authenticated, setauthenticated] = useState(null);
   const [zipCode, setZipCode] = useState("");
-  const [materialData, setmaterialData] = useState([]);
+  const [materialData, setmaterialData] = useState(emptyMaterialData);
   const [dataSource, setDataSource] = useState(emptyMaterialData);
   const [req, setRequest] = useState(request);
   const [error, setError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [inputDirty, setInputDirty] = useState(true)
 
   // const inputRef = useRef(null);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("authenticated");
-    if (loggedInUser) {
+    // if (loggedInUser) {
       setauthenticated(loggedInUser);
-      setmaterialData(emptyMaterialData);
-    }
+      // setmaterialData(emptyMaterialData);
+    // }
   }, []);
 
-  // const trimDollar = (num) => {
-  //   const str = num.split('$')
-  //   const ans = str[1]
-  //   if(ans) {
-  //     return Number(ans)
-  //   } else {
-  //     return 0.00
-  //   }
-  // }
+  
 
   const handleZipCodeChange = (e) => {
     console.log(e.target.value);
+    console.log(e.target.value.length)
      setZipCode(e.target.value);
+     setInputDirty(false)
+     if(e.target.value.length <5 || e.target.value.length > 5) {
+      setmaterialData(emptyMaterialData);
+     }
+
+     if(e.target.value === 5) {
+     setInputDirty(true)
+     }
     
   };
   const saveButton = () => {
@@ -424,7 +426,7 @@ const Pricing = () => {
           enterButton
           onChange={handleZipCodeChange}
         />
-        {error && zipCode.length !== 5 ? (
+        {!inputDirty && zipCode.length !== 5 ? (
           <span
             style={{
               color: "red",

@@ -93,11 +93,16 @@ const Login = () => {
     
   };
   {/* {isLoggedIn && <Navigate to="/pricing" replace={true} />} */}
+
+  const navigateToPricing = () => {
+    setTimeout(() => {
+      navigate("/pricing")
+    }, 1000);
+  }
   return (
     <div style={{ backgroundColor: "#EBFAF4", height: "97vh" }}> 
-      {isLoggedIn && setTimeout(() => {
-        navigate("/pricing");
-      },1000)}
+      {isLoggedIn ? navigateToPricing() : ''
+      }
 
       <div className="header-login">
         <img
