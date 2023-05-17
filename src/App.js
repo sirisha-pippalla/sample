@@ -17,8 +17,9 @@ const App = () => {
     <BrowserRouter>
     <Sidebar>
       <Routes>
-      <Route path='/login' element={<Login/>}></Route>
-          <Route path="/" element={<Login />} />
+      <Route path="/login" index element={<Login />} />
+          <Route path="/" index element={<Login />} />
+          {/* <Route path="/" element={<Pricing />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/comment" element={<Comment />} />

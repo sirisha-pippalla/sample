@@ -9,7 +9,10 @@ import {
   FaShoppingBag,
   FaThList,
   FaSignOutAlt,
+  
 } from "react-icons/fa";
+import {AiFillDollarCircle} from "react-icons/ai"
+import { DollarOutlined } from "@ant-design/icons";
 import { NavLink, useLocation } from "react-router-dom";
 
 
@@ -26,7 +29,8 @@ const Sidebar = ({ children }) => {
     {
       path: "/pricing",
       name: "Pricing",
-      icon: <FaUserAlt />,
+      icon: <AiFillDollarCircle size="25px"/>,
+
     },
     // {
     //     path:"/analytics",
@@ -57,7 +61,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div style={{ marginLeft: "0px", display: "flex" }}>
-      {location.pathname !== "/login" && (
+      {location.pathname !== "/login" && location.pathname != "/" && (
         <div style={{ width: isOpen ? "250px" : "50px" }} className="sidebar">
           <div className="top_section">
             <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">
@@ -104,16 +108,12 @@ const Sidebar = ({ children }) => {
       <main>{children}</main>
     </div> */}
           {menuItem.map((item, index) => {
-            // Exclude the login item if the current path is "/login"
-            if (location.pathname === "/login" && item.path === "/login") {
-              return null;
-            }
-            if (location.pathname === "/pricing" && item.path === "/pricing") {
-              return null;
-            }
-            if (location.pathname === "/login" && item.path === "/pricing") {
-              return null;
-            }
+           if (location.pathname === "/login" && item.path === "/login") {
+            return null;
+          }
+          if (location.pathname === "/login" && item.path === "/pricing") {
+            return null;
+          }
 
             return (
               <NavLink

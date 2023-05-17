@@ -88,7 +88,7 @@ const EditableCell = ({
           onPressEnter={save}
           onBlur={save}
           // addonBefore="$"
-          />
+        />
       </Form.Item>
     ) : (
       <div>
@@ -136,7 +136,8 @@ const Pricing = () => {
 
   const handleZipCodeChange = (e) => {
     console.log(e.target.value);
-    setZipCode(e.target.value);
+     setZipCode(e.target.value);
+    
   };
   const saveButton = () => {
     //handling save button
@@ -259,9 +260,9 @@ const Pricing = () => {
         "https://w9909rwdh1.execute-api.us-east-1.amazonaws.com/test/getApiForPricing",
         obj
       );
+      
 
-      const value = 32.42;
-      const formattedValue = value.toFixed(2); // '42.42' (formatted as '00.00')
+     
       let modifiedStr = JSON.stringify(emptyMaterialData);
       let modifiedArr = JSON.parse(modifiedStr);
       if (res && res.data && res.data.data && res.data.data.length > 0) {
@@ -378,11 +379,12 @@ const Pricing = () => {
       key: "price",
       className: "cel",
       editable: true,
+
+  
     },
   ];
-  
 
-  const columns =defaultColumns.map((col) => {
+  const columns = defaultColumns.map((col) => {
     if (!col.editable) {
       return col;
     }
@@ -422,16 +424,17 @@ const Pricing = () => {
           enterButton
           onChange={handleZipCodeChange}
         />
-        {error && zipCode.length <= 0 ? (
+        {error && zipCode.length !== 5 ? (
           <span
             style={{
               color: "red",
               marginTop: "5px",
               fontStyle: "italic",
-              fontSize:"20px"
+              fontSize: "20px",
             }}
           >
-            Please enter Zip Code...
+            Please enter valid Zip Code...
+            
           </span>
         ) : (
           ""
@@ -463,13 +466,9 @@ const Pricing = () => {
                     bordered={false}
                     size="small"
                   >
-                    {/* <span>
-                      $
-                    </span> */}
                     <Table
                       rowClassName={() => "editable-row"}
                       bordered
-
                       components={components}
                       dataSource={materialData[0]}
                       columns={columns}
